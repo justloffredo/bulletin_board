@@ -1,0 +1,42 @@
+!DOCTYPE HTML/>
+<html>
+  <head>
+    <title>Justin Loffredo</title>
+    <meta name="viewport" content="width-device-width, initial scale=1">
+		<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
+    <link rel="stylesheet" types="text.css" href= "/css/bulletin_board.css">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+</head>
+
+  <body>
+
+	<div class = "template">
+		<div class="template-header">
+
+      	<h1></h1>
+      	<div class= "bulletin-nav">
+          <ul class= "bulletin-nav-links">
+						<a class = "bulletin-nav-links-link" href="/views/pages/form.ejs">
+							Messages Form</a>
+						<a class = "bulletin-nav-links-link" href="/views/pages/list.ejs">
+								Messages List</a>
+          </ul>
+				</div>
+		</div>
+
+
+		<main class= "template-main">
+			<%-include("pages/" + page, args);%>
+		</main>
+
+    <footer class= "template-footer">
+      <h2 class= "template-footer-h2">Posted By: Justin Loffredo</h2>
+      <a href="https://www.linkedin.com/in/justinloffredo/">
+        <img class="template-footer-linkedin" src= "/images/linkedin.svg">
+      </a>
+    </footer>
+	</div>
+
+
+</body>
+</html>
