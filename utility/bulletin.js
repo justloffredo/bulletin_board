@@ -9,7 +9,14 @@ const Bulletin = {
 			return res.rows;
 		});
 	},
+
+	addInput: function(note) {
+		console.log(note);
+		// return query("INSERT INTO messages (title, body) VALUES (1$, 2$)", note);
+	},
+
 };
+
 
 
 

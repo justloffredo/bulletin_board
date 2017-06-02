@@ -14,15 +14,26 @@ app.use(express.static('assets'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
+app.get("/form", function(req,res) {
+	res.render("./pages/form");
+});
+
 app.get("/list", function(req, res) {
-	query("SELECT * FROM messages")
-	.then(function(data) {
-		// res.json(data);
+	Bulletin.getAll()
+		.then(function(input) {
 			res.render("./pages/list", {
-			input: data.rows,
+			input: input,
 			});
 		});
+	});
 
+	app.post("/form", function(req, res) {
+		Bulletin.addInput([req.body.title, req.body.body])
+		.then(function(input) {
+			res.render("./pages/list", {
+				input: input,
+			});
+		});
 	});
 
 
