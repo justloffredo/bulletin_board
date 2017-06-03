@@ -1,9 +1,14 @@
 <html>
 	<head>
-
+			<title>Weather Bulletin Board</title>
 	</head>
 
 	<body>
+		<% if (message) {%>
+			<p><%- message%></p>
+		<%}%>
+
+		<h1> Weather Bulletin Board </h1>
 			<table>
 				<% for(let i = 0; i < input.length; i++) { %>
 					<tr>

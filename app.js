@@ -2,8 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-Parser');
-const bulletinBoardRoutes = require('./Routes/bulletin_board.js');
-const query = require('./utility/query.js');
 const Bulletin = require('./utility/bulletin.js');
 
 
@@ -14,27 +12,43 @@ app.use(express.static('assets'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.get("/form", function(req,res) {
-	res.render("./pages/form");
+function renderList(res, message) {
+	Bulletin.getAll()
+	.then(function(input) {
+		res.render("./pages/list", {
+			input: input,
+			message: message,
+		});
+	});
+}
+
+app.get("/", function(req, res) {
+	renderList(res);
 });
 
-app.get("/list", function(req, res) {
-	Bulletin.getAll()
-		.then(function(input) {
-			res.render("./pages/list", {
-			input: input,
+
+
+app.post("/", function(req, res) {
+	if (req.body.title === "")
+	res.redirect("/form?message=Please%20Enter%20the%20Day%20of%20Forecast&tt=&bd=" + req.body.body);
+else if (req.body.body === "")
+	res.redirect("/form?message=Please%20Enter%20the%20Description%20of%20Forecast&bd=&tt=" + req.body.title);
+	Bulletin.add([req.body.title, req.body.body])
+	.then(function() {
+		renderList(res, "Saved " + req.body.title);
+	});
+});
+
+
+
+		app.get("/form", function(req,res) {
+			console.log(req);
+			res.render("./pages/form", {
+				title: req.query.title,
+				body: req.query.body,
+				message: req.query.message,
 			});
 		});
-	});
-
-	app.post("/form", function(req, res) {
-		Bulletin.addInput([req.body.title, req.body.body])
-		.then(function(input) {
-			res.render("./pages/list", {
-				input: input,
-			});
-		});
-	});
 
 
 
@@ -49,10 +63,11 @@ app.get("/list", function(req, res) {
 
 
 
+const port = process.env.PORT || 3000;
 
 
 
 
-	app.listen(3000, function() {
-		console.log("Your server is available at 3000");
-	});
+app.listen(port, function() {
+	console.log("Listening at http://localhost:" + port);
+});
