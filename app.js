@@ -30,9 +30,9 @@ app.get("/", function(req, res) {
 
 app.post("/", function(req, res) {
 	if (req.body.title === "")
-	res.redirect("/form?message=Please%20Enter%20the%20Day%20of%20Forecast&tt=&bd=" + req.body.body);
+	res.redirect("/form?message=Please%20Enter%20the%20Day%20of%20Forecast=" + req.body.body);
 else if (req.body.body === "")
-	res.redirect("/form?message=Please%20Enter%20the%20Description%20of%20Forecast&bd=&tt=" + req.body.title);
+	res.redirect("/form?message=Please%20Enter%20the%20Description%20of%20Forecast=" + req.body.title);
 	Bulletin.add([req.body.title, req.body.body])
 	.then(function() {
 		renderList(res, "Saved " + req.body.title);
