@@ -1,24 +1,28 @@
 <html>
 	<head>
 			<title>Weather Bulletin Board</title>
+			<meta name="viewport" content="width-device-width, initial scale=1">
+			<link rel="stylesheet" types="text.css" href="/css/cssReset.css">
+			<link rel="stylesheet" types="text.css" href= "/css/bulletin_board.css">
 	</head>
 
 	<body>
-		<% if (message) {%>
-			<p><%- message%></p>
-		<%}%>
 
-		<h1> Weather Bulletin Board </h1>
+	<h1> Weather Bulletin Board </h1>
 			<table>
 				<% for(let i = 0; i < input.length; i++) { %>
 					<tr>
-						<td><%= input[i].title %></td>
-						<td><%= input[i].body %></td>
-						<td><%= input[i].created %></td>
+						<td class="day"><%= input[i].title %></td>
+						<td class="forecast"><%= input[i].body %></td>
+						<td class="created"><%= input[i].created %></td>
 					</tr>
 				<%}%>
 			</table>
 
+		<a class="nav-to-form" href="/form">Click here to Submit a New Entry</a>
+		<% if (message) {%>
+			<p class= "message"><%- message%></p>
+		<%}%>
 </body>
 
 </html>

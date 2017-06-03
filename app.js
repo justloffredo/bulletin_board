@@ -42,7 +42,7 @@ else if (req.body.body === "")
 
 
 		app.get("/form", function(req,res) {
-			console.log(req);
+
 			res.render("./pages/form", {
 				title: req.query.title,
 				body: req.query.body,

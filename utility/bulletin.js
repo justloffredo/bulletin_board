@@ -11,7 +11,7 @@ const Bulletin = {
 	},
 
 add: function(posting) {
-	return query("INSERT INTO messages (title, body) VALUES ($1, $2)", [posting]);
+	return query("INSERT INTO messages (title, body) VALUES ($1, $2)", posting);
 	},
 
 

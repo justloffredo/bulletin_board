@@ -4,22 +4,27 @@
 <head>
   <meta charset="utf-8">
   <title>Bulletinboard Form</title>
+  <title>Justin Loffredo</title>
+  <meta name="viewport" content="width-device-width, initial scale=1">
+  <link rel="stylesheet" types="text.css" href="/css/cssReset.css">
+  <link rel="stylesheet" types="text.css" href= "/css/bulletin_board.css">
 </head>
 
 <body>
 
-	<% if (message) { %>
-			<p><%- message %></p>
-
-		<% } %>
-
-	<h1>Weather</h1>
+	<h1>Weather Bulletin Submission</h1>
 
 <form action = "/" method ="POST" >
-	<input type = "text" name = "title" placeholder = "Forecasted Day"/><br>
-	<input type = "text" name = "body"  placeholder = "Weather Description"/><br>
-	<button> Add </button>
+	<input class="enter-day" type = "text" name = "title" placeholder = "Forecasted Day"/><br>
+	<input class="enter-forecast" type = "text" name = "body"  placeholder = "Weather Description"/><br>
+	<button class= "add-button"> Add </button>
 </form>
+<% if (message) { %>
+		<p class="message"><%- message %></p>
+
+	<% } %>
+
+	<a class=nav-to-list href="/">Click here to view the Weather Bulletin Board</a>
 
 </body>
 
